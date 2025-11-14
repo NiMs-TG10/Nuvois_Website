@@ -22,7 +22,7 @@ export default function Footer() {
               <Linkedin className="w-5 h-5" />
             </a> */}
             <a
-              href="#https://www.instagram.com/nuvois"
+              href="https://www.instagram.com/nuvois"
               className="text-white/60 hover:text-[#B9975B] transition-colors"
               aria-label="Instagram"
             >
