@@ -14,15 +14,15 @@ export default function Footer() {
 
           {/* Social Links */}
           <div className="flex gap-6">
-            <a
+            {/* <a
               href="#"
               className="text-white/60 hover:text-[#B9975B] transition-colors"
               aria-label="LinkedIn"
             >
               <Linkedin className="w-5 h-5" />
-            </a>
+            </a> */}
             <a
-              href="#"
+              href="#https://www.instagram.com/nuvois"
               className="text-white/60 hover:text-[#B9975B] transition-colors"
               aria-label="Instagram"
             >
