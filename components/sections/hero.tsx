@@ -386,32 +386,23 @@ export default function Hero() {
       className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-gradient-to-br from-white via-[#F7F7F7] to-[#F0F0F0]"
     >
       
-      {/* BACKGROUND IMAGES FIX: Ensuring correct visibility toggling */}
-      
-      {/* DESKTOP BACKGROUND IMAGE (bg.png): hidden by default, visible on large screens */}
+      {/* BACKGROUND IMAGES */}
       <div 
         className="absolute inset-0 w-full h-full hidden lg:block" 
         style={{ backgroundImage: "url('/bg.png')", backgroundSize: "cover", backgroundPosition: "center" }}
         aria-hidden="true"
       ></div>
-      
-      {/* MOBILE/TABLET BACKGROUND IMAGE (bg2.png): visible by default, hidden on large screens */}
       <div 
-        className="absolute inset-0 w-full h-full lg:hidden" // Removed any potential hidden class
+        className="absolute inset-0 w-full h-full lg:hidden" 
         style={{ backgroundImage: "url('/bg2.png')", backgroundSize: "cover", backgroundPosition: "center" }}
         aria-hidden="true"
       ></div>
       
-      {/* Overlays FIX: Ensuring correct visibility toggling */}
-      
-      {/* Overlay for Desktop Image */}
+      {/* Overlays */}
       <div className="absolute inset-0 bg-black/10 hidden lg:block" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-white/30 lg:hidden" aria-hidden="true"></div>
       
-      {/* Overlay for Mobile/Tablet Image */}
-      <div className="absolute inset-0 bg-white/30 lg:hidden" // Removed any potential hidden class
-        aria-hidden="true"></div>
-      
-      {/* Decorative elements (unchanged) */}
+      {/* Decorative elements */}
       <div 
         className={`absolute top-0 right-0 w-[40rem] h-[40rem] bg-[${ACCENT_COLOR}]/5 rounded-full blur-[7rem] z-0 opacity-70`} 
         aria-hidden="true" 
@@ -432,11 +423,10 @@ export default function Hero() {
           </p>
 
           <h1 
-            // FIX: Reduced base font size to 5xl, only increasing to 6xl on small screens and 8xl on medium/large
-            className={`font-serif text-5xl sm:text-6xl md:text-8xl font-black text-[${TEXT_COLOR}] mb-6 leading-tight text-balance`}
+            // MODIFICATION 1: Reduced desktop size from md:text-8xl to lg:text-7xl
+            className={`font-serif text-5xl sm:text-6xl lg:text-7xl font-black text-[${TEXT_COLOR}] mb-6 leading-tight text-balance`}
           >
             Your Style.
-            {/* FIX: Removed line break on mobile by keeping hidden sm:block */}
             <br className='hidden sm:block'/>
             Perfected by 
             <span 
@@ -447,7 +437,8 @@ export default function Hero() {
           </h1>
 
           <p 
-            className={`text-xl md:text-2xl text-[${TEXT_COLOR}]/90 mb-12 max-w-2xl lg:max-w-lg leading-relaxed font-light text-balance`}
+            // MODIFICATION 2: Reduced desktop paragraph size from md:text-2xl to lg:text-xl
+            className={`text-lg sm:text-xl lg:text-2xl text-[${TEXT_COLOR}]/90 mb-12 max-w-2xl lg:max-w-lg leading-relaxed font-light text-balance`}
           >
             Stop guessing. Get personalized, AI-driven style recommendations that match your unique body, budget, and
             existing wardrobe.
