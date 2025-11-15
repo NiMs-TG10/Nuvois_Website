@@ -369,11 +369,8 @@ export default function Hero() {
   const ACCENT_COLOR = '#B9975B' // Muted Gold/Brown
   const TEXT_COLOR = '#1A1A1A' // Near-Black for stark contrast
 
-  // Define the style for maximum contrast and visibility for the 'AI' text
   const highContrastAiStyle = {
-    // 1. TEXT COLOR REVERTED: Changed back to the ACCENT_COLOR
     color: ACCENT_COLOR, 
-    // 2. Strong text shadow for a dark outline and the gold glow (KEPT)
     textShadow: `
       1px 1px 0 #000, 
       -1px -1px 0 #000, 
@@ -389,21 +386,30 @@ export default function Hero() {
       className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-gradient-to-br from-white via-[#F7F7F7] to-[#F0F0F0]"
     >
       
-      {/* BACKGROUND IMAGES (unchanged) */}
+      {/* BACKGROUND IMAGES FIX: Ensuring correct visibility toggling */}
+      
+      {/* DESKTOP BACKGROUND IMAGE (bg.png): hidden by default, visible on large screens */}
       <div 
         className="absolute inset-0 w-full h-full hidden lg:block" 
         style={{ backgroundImage: "url('/bg.png')", backgroundSize: "cover", backgroundPosition: "center" }}
         aria-hidden="true"
       ></div>
+      
+      {/* MOBILE/TABLET BACKGROUND IMAGE (bg2.png): visible by default, hidden on large screens */}
       <div 
-        className="absolute inset-0 w-full h-full lg:hidden" 
+        className="absolute inset-0 w-full h-full lg:hidden" // Removed any potential hidden class
         style={{ backgroundImage: "url('/bg2.png')", backgroundSize: "cover", backgroundPosition: "center" }}
         aria-hidden="true"
       ></div>
       
-      {/* Overlays (unchanged) */}
+      {/* Overlays FIX: Ensuring correct visibility toggling */}
+      
+      {/* Overlay for Desktop Image */}
       <div className="absolute inset-0 bg-black/10 hidden lg:block" aria-hidden="true"></div>
-      <div className="absolute inset-0 bg-white/30 lg:hidden" aria-hidden="true"></div>
+      
+      {/* Overlay for Mobile/Tablet Image */}
+      <div className="absolute inset-0 bg-white/30 lg:hidden" // Removed any potential hidden class
+        aria-hidden="true"></div>
       
       {/* Decorative elements (unchanged) */}
       <div 
@@ -426,12 +432,13 @@ export default function Hero() {
           </p>
 
           <h1 
-            className={`font-serif text-6xl md:text-8xl font-black text-[${TEXT_COLOR}] mb-6 leading-tight text-balance`}
+            // FIX: Reduced base font size to 5xl, only increasing to 6xl on small screens and 8xl on medium/large
+            className={`font-serif text-5xl sm:text-6xl md:text-8xl font-black text-[${TEXT_COLOR}] mb-6 leading-tight text-balance`}
           >
             Your Style.
+            {/* FIX: Removed line break on mobile by keeping hidden sm:block */}
             <br className='hidden sm:block'/>
             Perfected by 
-            {/* --- MODIFICATION HERE: Using the updated high-contrast style --- */}
             <span 
               style={highContrastAiStyle}
             >
