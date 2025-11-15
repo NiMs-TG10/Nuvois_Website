@@ -11,6 +11,10 @@ export const metadata: Metadata = {
   title: "Nuvois.ai",
   description: "Your Style. Perfected by AI.",
   generator: "Nishant",
+  // icons: {
+  //   icon: "/favicon.ico",
+  // },
+
 };
 
 export default function RootLayout({
