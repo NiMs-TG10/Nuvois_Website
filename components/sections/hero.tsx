@@ -451,7 +451,7 @@ export default function Hero() {
               className={`bg-[${ACCENT_COLOR}] hover:bg-[#a08750] text-white px-10 py-4 text-xl font-bold shadow-xl shadow-[${ACCENT_COLOR}]/40 focus:ring-4 focus:ring-[${ACCENT_COLOR}]/50`}
             >
               <Zap className="w-5 h-5 mr-3 fill-white" />
-              Start Styling Now
+              See how it works
             </Button>
             
             <div 
