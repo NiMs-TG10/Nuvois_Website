@@ -2,259 +2,7 @@
 
 // "use client";
 
-// import { Mail } from "lucide-react";
-// import {
-//   Dialog,
-//   DialogContent,
-//   DialogHeader,
-//   DialogTitle,
-//   DialogDescription,
-// } from "@/components/ui/dialog"; // Assuming you use these
-
-// interface ContactDialogProps {
-//   isOpen: boolean;
-//   onOpenChange: (open: boolean) => void;
-// }
-
-// const ContactDialog: React.FC<ContactDialogProps> = ({ isOpen, onOpenChange }) => {
-//   const emails = [
-//     // "davesarjan@gmail.com",
-//     // "devangimehta29@gmail.com",
-//     // "mehtanishant1030@gmail.com",
-//     "enquire@vastralens.com",
-//   ];
-
-//   return (
-//     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-//       <DialogContent className="sm:max-w-[425px]">
-//         <DialogHeader className="text-center">
-//           <DialogTitle className="text-3xl font-serif text-[#222222]">
-//             Contact Our Team 
-//           </DialogTitle>
-//           <DialogDescription className="text-lg text-[#222222]/70">
-//             Reach out directly to us for business inquiries.
-//           </DialogDescription>
-//         </DialogHeader>
-        
-//         <div className="py-6 space-y-4">
-//           {emails.map((email) => (
-//             <a
-//               key={email}
-//               href={`mailto:${email}`}
-//               className="flex items-center space-x-3 p-4 border border-[#B9975B]/30 rounded-xl transition-colors duration-200 hover:bg-[#B9975B]/10 group"
-//             >
-//               <Mail className="w-5 h-5 text-[#B9975B] group-hover:scale-110 transition-transform" />
-//               <span className="text-base font-semibold text-[#222222]">
-//                 {email}
-//               </span>
-//             </a>
-//           ))}
-//         </div>
-        
-//       </DialogContent>
-//     </Dialog>
-//   );
-// };
-
-// export default ContactDialog;
-
-
-
-//------
-//-----
-//-----
-//-----
-//-----
-//-----
-//-----
-//-----
-//-----
-//-----
-// "use client";
-
-// import { Mail, Send } from "lucide-react";
-// import { useState } from "react";
-// import {
-//   Dialog,
-//   DialogContent,
-//   DialogHeader,
-//   DialogTitle,
-//   DialogDescription,
-//   DialogFooter,
-// } from "@/components/ui/dialog";
-// import { Input } from "@/components/ui/input"; // Assuming you have these
-// import { Button } from "@/components/ui/button"; // Assuming you have these
-// import { Label } from "@/components/ui/label"; // Assuming you have these
-// import {
-//   Select,
-//   SelectContent,
-//   SelectItem,
-//   SelectTrigger,
-//   SelectValue,
-// } from "@/components/ui/select"; // Assuming you have these
-
-// interface ContactDialogProps {
-//   isOpen: boolean;
-//   onOpenChange: (open: boolean) => void;
-// }
-
-// const ContactDialog: React.FC<ContactDialogProps> = ({ isOpen, onOpenChange }) => {
-//   const [formData, setFormData] = useState({
-//     name: "",
-//     email: "",
-//     enquiryType: "Personal Wardrobe Assistance", // Default value
-//     message: "",
-//   });
-
-//   const [isSubmitting, setIsSubmitting] = useState(false);
-//   const [submitSuccess, setSubmitSuccess] = useState<boolean | null>(null);
-
-//   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-//     const { id, value } = e.target;
-//     setFormData((prev) => ({ ...prev, [id]: value }));
-//   };
-
-//   const handleSelectChange = (value: string) => {
-//     setFormData((prev) => ({ ...prev, enquiryType: value }));
-//   };
-
-//   const handleSubmit = async (e: React.FormEvent) => {
-//     e.preventDefault();
-//     setIsSubmitting(true);
-//     setSubmitSuccess(null);
-
-//     // --- FORM SUBMISSION LOGIC GOES HERE ---
-//     console.log("Submitting form data:", formData);
-
-//     // Simulate an API call or email sending process
-//     try {
-//       // Replace this with your actual fetch/API call
-//       await new Promise(resolve => setTimeout(resolve, 1500)); 
-
-//       // On successful submission:
-//       setSubmitSuccess(true);
-//       // Optional: Clear form data
-//       setFormData({
-//         name: "",
-//         email: "",
-//         enquiryType: "Personal Wardrobe Assistance", 
-//         message: "",
-//       });
-
-//     } catch (error) {
-//       console.error("Submission failed:", error);
-//       setSubmitSuccess(false);
-//     } finally {
-//       setIsSubmitting(false);
-//     }
-//   };
-
-//   return (
-//     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-//       <DialogContent className="sm:max-w-[425px]">
-//         <DialogHeader className="text-center">
-//           <DialogTitle className="text-3xl font-serif text-[#222222]">
-//             Contact Our Team 
-//           </DialogTitle>
-//           <DialogDescription className="text-lg text-[#222222]/70">
-//             Send us a message for business inquiries.
-//           </DialogDescription>
-//         </DialogHeader>
-        
-//         <form onSubmit={handleSubmit} className="py-4 space-y-4">
-//           <div className="space-y-2">
-//             <Label htmlFor="name">Name</Label>
-//             <Input
-//               id="name"
-//               placeholder="Your Full Name"
-//               value={formData.name}
-//               onChange={handleChange}
-//               required
-//             />
-//           </div>
-          
-//           <div className="space-y-2">
-//             <Label htmlFor="email">Email</Label>
-//             <Input
-//               id="email"
-//               type="email"
-//               placeholder="you@example.com"
-//               value={formData.email}
-//               onChange={handleChange}
-//               required
-//             />
-//           </div>
-          
-//           <div className="space-y-2">
-//             <Label htmlFor="enquiryType">Enquiry Type</Label>
-//             <Select
-//               onValueChange={handleSelectChange}
-//               value={formData.enquiryType}
-//               required
-//             >
-//               <SelectTrigger id="enquiryType">
-//                 <SelectValue placeholder="Select enquiry type" />
-//               </SelectTrigger>
-//               <SelectContent>
-//                 <SelectItem value="Personal Wardrobe Assistance">Personal Wardrobe Assistance</SelectItem>
-//                 <SelectItem value="Store Outfit Suggestion">Store Outfit Suggestion</SelectItem>
-//                 <SelectItem value="Other Business Inquiry">Other Business Inquiry</SelectItem>
-//               </SelectContent>
-//             </Select>
-//           </div>
-
-//           <div className="space-y-2">
-//             <Label htmlFor="message">Message</Label>
-//             <textarea
-//               id="message"
-//               rows={4}
-//               placeholder="Tell us about your inquiry..."
-//               value={formData.message}
-//               onChange={handleChange}
-//               className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" // You might want to use a custom component for textarea if available
-//               required
-//             />
-//           </div>
-
-//           <DialogFooter className="pt-4">
-//             <Button 
-//               type="submit" 
-//               className="w-full bg-[#B9975B] hover:bg-[#A88A4F] text-white"
-//               disabled={isSubmitting}
-//             >
-//               {isSubmitting ? (
-//                 <>Sending...</>
-//               ) : (
-//                 <>
-//                   <Send className="mr-2 h-4 w-4" /> Send Message
-//                 </>
-//               )}
-//             </Button>
-//           </DialogFooter>
-//         </form>
-
-//         {/* Submission Status Feedback */}
-//         {submitSuccess === true && (
-//           <div className="p-3 text-center text-sm text-green-600 border border-green-300 bg-green-50 rounded-md">
-//             Message sent successfully! We will get back to you soon.
-//           </div>
-//         )}
-//         {submitSuccess === false && (
-//           <div className="p-3 text-center text-sm text-red-600 border border-red-300 bg-red-50 rounded-md">
-//             Failed to send message. Please try again or email us directly.
-//           </div>
-//         )}
-        
-//       </DialogContent>
-//     </Dialog>
-//   );
-// };
-
-// export default ContactDialog;
-
-"use client";
-
-import { Mail, Send } from "lucide-react";
+import { Send, X } from "lucide-react";
 import { useState } from "react";
 import {
   Dialog,
@@ -262,18 +10,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogDescription,
-  DialogFooter,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input"; 
 import { Button } from "@/components/ui/button"; 
 import { Label } from "@/components/ui/label"; 
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"; 
 
 interface ContactDialogProps {
   isOpen: boolean;
@@ -284,7 +24,6 @@ const ContactDialog: React.FC<ContactDialogProps> = ({ isOpen, onOpenChange }) =
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    enquiryType: "Personal Wardrobe Assistance", // Default value
     message: "",
   });
 
@@ -296,16 +35,11 @@ const ContactDialog: React.FC<ContactDialogProps> = ({ isOpen, onOpenChange }) =
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
 
-  const handleSelectChange = (value: string) => {
-    setFormData((prev) => ({ ...prev, enquiryType: value }));
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitSuccess(null);
 
-    // --- VERCEL SERVERLESS FUNCTION SUBMISSION LOGIC ---
     const API_ENDPOINT = "/api/contact"; 
 
     try {
@@ -319,19 +53,14 @@ const ContactDialog: React.FC<ContactDialogProps> = ({ isOpen, onOpenChange }) =
 
         if (response.ok) {
             setSubmitSuccess(true);
-            
-            // Clear form data on successful submission
             setFormData({
                 name: "",
                 email: "",
-                enquiryType: "Personal Wardrobe Assistance", 
                 message: "",
             });
+            setTimeout(() => setSubmitSuccess(null), 5000);
         } else {
-            // Handle API route errors (e.g., 500 from the serverless function)
             setSubmitSuccess(false);
-            const errorData = await response.json();
-            console.error("Submission failed on API route:", errorData.message);
         }
 
     } catch (error) {
@@ -344,103 +73,95 @@ const ContactDialog: React.FC<ContactDialogProps> = ({ isOpen, onOpenChange }) =
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader className="text-center">
-          <DialogTitle className="text-3xl font-serif text-[#222222]">
-            Contact Our Team 
-          </DialogTitle>
-          <DialogDescription className="text-lg text-[#222222]/70">
-            Send us a message for business inquiries.
-          </DialogDescription>
-        </DialogHeader>
-        
-        <form onSubmit={handleSubmit} className="py-4 space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="name">Name</Label>
-            <Input
-              id="name"
-              placeholder="Your Full Name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-          </div>
+      <DialogContent className="sm:max-w-[500px] bg-[#0A0A0A] border-white/10 text-white p-0 overflow-hidden rounded-none sm:rounded-sm">
+        <div className="relative p-8 md:p-12">
+          <DialogHeader className="mb-10 text-left">
+            <p className="text-[10px] tracking-[0.3em] uppercase mb-4 text-white/40">
+              01 / CONTACT
+            </p>
+            <DialogTitle className="text-4xl md:text-5xl font-medium tracking-tight leading-none text-white font-sans italic">
+              Say Hello<span className="text-[#FF5500]">.</span>
+            </DialogTitle>
+            <DialogDescription className="text-base text-white/50 mt-4 font-light leading-relaxed">
+              Have a project in mind? Let's discuss how we can help you architect intelligence.
+            </DialogDescription>
+          </DialogHeader>
           
-          <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <Input
-              id="email"
-              type="email"
-              placeholder="you@example.com"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          
-          <div className="space-y-2">
-            <Label htmlFor="enquiryType">Enquiry Type</Label>
-            <Select
-              onValueChange={handleSelectChange}
-              value={formData.enquiryType}
-              required
-            >
-              <SelectTrigger id="enquiryType">
-                <SelectValue placeholder="Select enquiry type" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="Personal Wardrobe Assistance">Personal Wardrobe Assistance</SelectItem>
-                <SelectItem value="Store Outfit Suggestion">Store Outfit Suggestion</SelectItem>
-                <SelectItem value="Other Business Inquiry">Other Business Inquiry</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
+          <form onSubmit={handleSubmit} className="space-y-8">
+            <div className="space-y-2 group">
+              <Label htmlFor="name" className="text-[10px] uppercase tracking-[0.2em] text-white/30 group-focus-within:text-[#FF5500] transition-colors">Name</Label>
+              <Input
+                id="name"
+                placeholder="Full Name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+                className="bg-transparent border-0 border-b border-white/10 rounded-none px-0 h-12 text-base focus-visible:ring-0 focus-visible:border-[#FF5500] transition-all placeholder:text-white/10"
+              />
+            </div>
+            
+            <div className="space-y-2 group">
+              <Label htmlFor="email" className="text-[10px] uppercase tracking-[0.2em] text-white/30 group-focus-within:text-[#FF5500] transition-colors">Email</Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="email@example.com"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                className="bg-transparent border-0 border-b border-white/10 rounded-none px-0 h-12 text-base focus-visible:ring-0 focus-visible:border-[#FF5500] transition-all placeholder:text-white/10"
+              />
+            </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="message">Message</Label>
-            <textarea
-              id="message"
-              rows={4}
-              placeholder="Tell us about your inquiry..."
-              value={formData.message}
-              onChange={handleChange}
-              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" // You might want to use a custom component for textarea if available
-              required
-            />
-          </div>
+            <div className="space-y-2 group">
+              <Label htmlFor="message" className="text-[10px] uppercase tracking-[0.2em] text-white/30 group-focus-within:text-[#FF5500] transition-colors">Message</Label>
+              <textarea
+                id="message"
+                rows={4}
+                placeholder="Tell us about your project..."
+                value={formData.message}
+                onChange={handleChange}
+                required
+                className="flex w-full bg-transparent border-0 border-b border-white/10 rounded-none px-0 py-3 text-base focus-visible:outline-none focus-visible:border-[#FF5500] transition-all resize-none placeholder:text-white/10 min-h-[100px]"
+              />
+            </div>
 
-          <DialogFooter className="pt-4">
-            <Button 
-              type="submit" 
-              className="w-full bg-[#B9975B] hover:bg-[#A88A4F] text-white"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? (
-                <>Sending...</>
-              ) : (
-                <>
-                  <Send className="mr-2 h-4 w-4" /> Send Message
-                </>
-              )}
-            </Button>
-          </DialogFooter>
-        </form>
+            <div className="pt-6">
+              <Button 
+                type="submit" 
+                className="w-full bg-white text-black hover:bg-[#FF5500] hover:text-white transition-all duration-300 rounded-none h-14 uppercase text-xs tracking-[0.2em] font-medium group"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? (
+                  "Sending..."
+                ) : (
+                  <div className="flex items-center justify-center gap-2">
+                    Send Message
+                    <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </div>
+                )}
+              </Button>
+            </div>
+          </form>
 
-        {/* Submission Status Feedback */}
-        {submitSuccess === true && (
-          <div className="p-3 text-center text-sm text-green-600 border border-green-300 bg-green-50 rounded-md">
-            Message sent successfully! We will get back to you soon.
+          {/* Submission Status Feedback */}
+          <div className="mt-6 min-h-[24px]">
+            {submitSuccess === true && (
+              <p className="text-sm text-green-400 font-medium">
+                Message sent successfully. We'll be in touch.
+              </p>
+            )}
+            {submitSuccess === false && (
+              <p className="text-sm text-red-400 font-medium">
+                Failed to send message. Please try again.
+              </p>
+            )}
           </div>
-        )}
-        {submitSuccess === false && (
-          <div className="p-3 text-center text-sm text-red-600 border border-red-300 bg-red-50 rounded-md">
-            Failed to send message. Please try again or email us directly.
-          </div>
-        )}
-        
+        </div>
       </DialogContent>
     </Dialog>
   );
 };
 
 export default ContactDialog;
+

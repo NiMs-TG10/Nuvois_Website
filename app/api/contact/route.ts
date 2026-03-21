@@ -5,7 +5,7 @@ import { google } from 'googleapis';
 
 export async function POST(req: Request) {
   try {
-    const { name, email, enquiryType, message } = await req.json();
+    const { name, email, message } = await req.json();
 
     // 1. Authenticate using Environment Variables
     const auth = new google.auth.GoogleAuth({
@@ -27,7 +27,6 @@ export async function POST(req: Request) {
         new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), // Timestamp
         name,
         email,
-        enquiryType,
         message,
       ],
     ];
@@ -35,7 +34,7 @@ export async function POST(req: Request) {
     // 3. Write to the Google Sheet (Ensure GOOGLE_SHEET_ID is set in Vercel)
     const response = await sheets.spreadsheets.values.append({
       spreadsheetId: process.env.GOOGLE_SHEET_ID,
-      range: 'Sheet1!A:E', // Adjust 'Sheet1' to your actual sheet name, A:E covers 5 columns
+      range: 'Sheet1!A:D', // Adjust 'Sheet1' to your actual sheet name, A:D covers 4 columns
       valueInputOption: 'USER_ENTERED',
       requestBody: {
         values,

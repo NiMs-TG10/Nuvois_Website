@@ -7,7 +7,8 @@ import Navigation from "@/components/sections/navigation"
 import Hero from "@/components/sections/hero"
 import Problem from "@/components/sections/problem"
 import AppShowcase from "@/components/sections/app-showcase"
-import Platform from "@/components/sections/platform"
+import Services from "@/components/sections/services"
+import OperatingModel from "@/components/sections/operating-model"
 // import Technology from "@/components/sections/technology" // Keep commented out
 import FinalCTA from "@/components/sections/final-cta"
 import Footer from "@/components/sections/footer"
@@ -30,10 +31,11 @@ export default function Home() {
       
       {/* Your Page Sections */}
       <Hero />
-      <Problem />
-      <AppShowcase />
-      <Platform />
-      <FinalCTA />
+      {/* <Problem /> */}
+      {/* <AppShowcase /> */}
+      <Services onContactClick={handleOpenContactDialog} />
+      <OperatingModel />
+      {/* <FinalCTA /> */}
       <Footer />
       
       {/* 4. Render the Contact Dialog */}
