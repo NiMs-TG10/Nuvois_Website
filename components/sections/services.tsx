@@ -39,6 +39,16 @@ export default function Services({ onContactClick }: ServicesProps) {
         "Business outcome: decentralized trust, consistent Web3 security controls, faster deployments, and governed blockchain infrastructure.",
       comingSoon: true,
     },
+    {
+      number: "04",
+      title: "Custom Website & App Development",
+      description:
+        "We build stunning custom websites and native mobile applications, engineer scalable web platforms, and design modern user interfaces — so your digital presence is engaging, performant, and accessible.",
+      targets: "PAGE LOAD SPEED TARGET · ACCESSIBILITY SCORE TARGET · USER RETENTION TARGET",
+      outcome:
+        "Business outcome: responsive web experiences, functional mobile apps, modern architecture, and improved digital footprint.",
+      comingSoon: true,
+    },
   ];
 
   return (
@@ -78,7 +88,7 @@ export default function Services({ onContactClick }: ServicesProps) {
 
           <div className="lg:col-span-7 lg:pl-12 flex flex-col justify-start">
             <p className="text-lg leading-relaxed mb-6" style={{ color: "rgba(255, 255, 255, 0.7)" }}>
-              Three focused practices — Salesforce, AI, and Web3 — delivered by one
+              Four focused practices — Custom Web & App Development, Salesforce, AI, and Web3 — delivered by one
               accountable pod.
             </p>
             <p className="text-base leading-relaxed mb-10" style={{ color: "rgba(255, 255, 255, 0.6)" }}>
@@ -156,6 +166,7 @@ export default function Services({ onContactClick }: ServicesProps) {
                        {svc.title === "Salesforce" && "Salesforce Configuration · Integrations · Automation & Analytics"}
                        {svc.title === "AI" && "Machine Learning · LLM Development · Data Observability"}
                        {svc.title === "Web3" && "Smart Contracts · Node Infrastructure · DApp Architecture"}
+                       {svc.title === "Custom Website & App Development" && "Full-Stack Web · Native Mobile Apps · UI/UX Design"}
                      </p>
                   </div>
                 </div>

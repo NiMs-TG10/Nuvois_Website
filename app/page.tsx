@@ -2,7 +2,7 @@
 
 "use client"; // Add this if it's not already at the top of the file
 
-import { useState } from 'react'; // Import useState
+import { useRouter } from 'next/navigation'; // Import useRouter
 import Navigation from "@/components/sections/navigation"
 import Hero from "@/components/sections/hero"
 import Problem from "@/components/sections/problem"
@@ -12,37 +12,42 @@ import OperatingModel from "@/components/sections/operating-model"
 // import Technology from "@/components/sections/technology" // Keep commented out
 import FinalCTA from "@/components/sections/final-cta"
 import Footer from "@/components/sections/footer"
-// Import the new ContactDialog component
-import ContactDialog from "@/components/sections/ContactDialog"; 
+// Import the new FAQ component
+import FAQ from "@/components/sections/faq"
+// Import the new Contact component
+import Contact from "@/components/sections/contact"; 
+// Import the new SidebarIndex component
+import SidebarIndex from "@/components/sections/sidebar-index";
 
 export default function Home() {
-  // 1. State to control the visibility of the Contact Dialog
-  const [isContactDialogOpen, setIsContactDialogOpen] = useState(false);
+  const router = useRouter();
 
-  // 2. Handler function to open the dialog
-  const handleOpenContactDialog = () => {
-    setIsContactDialogOpen(true);
+  // Route to the contact page
+  const handleOpenContactPage = () => {
+    router.push("/contact");
   };
 
   return (
     <main className="bg-background text-foreground">
+      {/* Global Sidebar Index */}
+      <SidebarIndex />
+
       {/* 3. Pass the handler to the Navigation component */}
-      <Navigation onContactClick={handleOpenContactDialog} /> 
+      <Navigation onContactClick={handleOpenContactPage} /> 
       
       {/* Your Page Sections */}
       <Hero />
       {/* <Problem /> */}
       {/* <AppShowcase /> */}
-      <Services onContactClick={handleOpenContactDialog} />
+      <Services onContactClick={handleOpenContactPage} />
       <OperatingModel />
+      <FAQ />
       {/* <FinalCTA /> */}
-      <Footer />
       
-      {/* 4. Render the Contact Dialog */}
-      <ContactDialog 
-        isOpen={isContactDialogOpen} 
-        onOpenChange={setIsContactDialogOpen} 
-      />
+      {/* Render the Contact Section inline */}
+      <Contact />
+
+      <Footer />
     </main>
   )
 }

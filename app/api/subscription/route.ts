@@ -31,7 +31,7 @@ export async function POST(req: Request) {
     });
 
     const client = await auth.getClient();
-    const sheets = google.sheets({ version: 'v4', auth: client });
+    const sheets = google.sheets({ version: 'v4', auth: client as any });
     
     // 2. Define the data to be written (Timestamp and Email Address)
     const values = [

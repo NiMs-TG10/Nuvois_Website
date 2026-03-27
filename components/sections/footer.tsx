@@ -41,7 +41,7 @@ export default function Footer() {
 
         <div className="border-t border-white/10 pt-16 md:pt-24 mb-16">
           {/* Logo */}
-          <div className="font-sans text-[18vw] leading-[0.8] font-bold tracking-tighter uppercase mb-6 md:mb-12">
+          <div className="font-sans text-[12vw] leading-[0.8] font-bold tracking-tighter uppercase mb-6 md:mb-12">
             NUVOIS<span className="text-[#FF5500]">.</span>
           </div>
 

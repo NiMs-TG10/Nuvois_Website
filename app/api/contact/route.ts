@@ -19,7 +19,7 @@ export async function POST(req: Request) {
     });
 
     const client = await auth.getClient();
-    const sheets = google.sheets({ version: 'v4', auth: client });
+    const sheets = google.sheets({ version: 'v4', auth: client as any });
 
     // 2. Define the data to be written
     const values = [
@@ -27,6 +27,7 @@ export async function POST(req: Request) {
         new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), // Timestamp
         name,
         email,
+        "N/A", // Placeholder for removed 'Enquiry Type' field to maintain column alignment
         message,
       ],
     ];
@@ -34,7 +35,7 @@ export async function POST(req: Request) {
     // 3. Write to the Google Sheet (Ensure GOOGLE_SHEET_ID is set in Vercel)
     const response = await sheets.spreadsheets.values.append({
       spreadsheetId: process.env.GOOGLE_SHEET_ID,
-      range: 'Sheet1!A:D', // Adjust 'Sheet1' to your actual sheet name, A:D covers 4 columns
+      range: 'Sheet1', // Appending just to the sheet name automatically places it in the correct columns
       valueInputOption: 'USER_ENTERED',
       requestBody: {
         values,
@@ -43,7 +44,8 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ 
         success: true, 
-        rowsAppended: response.data.updates?.updatedRows 
+        rowsAppended: response.data.updates?.updatedRows,
+        updatedRange: response.data.updates?.updatedRange
     }, { status: 200 });
 
   } catch (error) {
@@ -51,7 +53,8 @@ export async function POST(req: Request) {
     // Return a generic server error
     return NextResponse.json({ 
         success: false, 
-        message: 'Failed to submit form.' 
+        message: 'Failed to submit form.',
+        errorDetail: error instanceof Error ? error.message : String(error)
     }, { status: 500 });
   }
 }

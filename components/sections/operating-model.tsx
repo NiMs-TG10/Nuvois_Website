@@ -121,18 +121,12 @@ export default function OperatingModel() {
                     <div className="text-2xl sm:text-3xl font-semibold tracking-tight leading-snug whitespace-pre-wrap">
                       {item.heading}
                     </div>
-                    <div className="text-[10px] tracking-[0.2em] uppercase text-white/40 font-medium pt-2">
-                      {item.tag}
-                    </div>
                   </div>
 
                   {/* Right Column */}
                   <div className="lg:col-span-5 flex flex-col justify-between gap-8 h-full">
                     <div className="text-[13px] sm:text-[15px] text-white/70 leading-relaxed font-light">
                       {item.description}
-                    </div>
-                    <div className="text-[10px] tracking-[0.2em] uppercase text-white/40 font-medium pt-2">
-                      {item.tag}
                     </div>
                   </div>
                 </div>
