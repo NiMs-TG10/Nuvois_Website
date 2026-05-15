@@ -4,6 +4,8 @@
 
 import { useState, useEffect } from "react";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { useRouter, usePathname } from "next/navigation";
+import Link from "next/link";
 
 // Define props for the Navigation component
 interface NavigationProps {
@@ -21,12 +23,28 @@ export default function Navigation({ onContactClick }: NavigationProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleLogoClick = (e: React.MouseEvent) => {
+    if (pathname === "/") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      // If not on home page, let the Link handle navigation
+    }
+  };
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     } else if (id === "home") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      if (pathname === "/") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        router.push("/");
+      }
     }
   };
 
@@ -52,8 +70,9 @@ export default function Navigation({ onContactClick }: NavigationProps) {
           </button>
 
         {/* Logo — nuvois. */}
-        <button
-          onClick={() => scrollToSection("home")}
+        <Link
+          href="/"
+          onClick={handleLogoClick}
           className="group focus:outline-none flex items-baseline hover:opacity-80 transition-opacity"
           aria-label="Go to home screen"
         >
@@ -65,7 +84,7 @@ export default function Navigation({ onContactClick }: NavigationProps) {
           <span className="text-3xl font-bold text-primary transition-colors duration-300 ml-0.5">
             .
           </span>
-        </button>
+        </Link>
         </div>
 
         {/* Center dot indicator */}

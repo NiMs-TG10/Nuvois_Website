@@ -22,9 +22,12 @@ import SidebarIndex from "@/components/sections/sidebar-index";
 export default function Home() {
   const router = useRouter();
 
-  // Route to the contact page
+  // Scroll to the contact section
   const handleOpenContactPage = () => {
-    router.push("/contact");
+    const element = document.getElementById("contact");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
