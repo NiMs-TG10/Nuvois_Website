@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import * as d3 from 'd3-geo'
 import * as topojson from 'topojson-client'
+import { useTheme } from 'next-themes'
 
 export default function WorldMap() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -10,6 +11,12 @@ export default function WorldMap() {
   const labelRef = useRef<HTMLDivElement>(null)
   
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
+  const { resolvedTheme } = useTheme()
+  const themeRef = useRef(resolvedTheme)
+
+  useEffect(() => {
+    themeRef.current = resolvedTheme
+  }, [resolvedTheme])
   
   const rotationRef = useRef<[number, number, number]>([-40, -10, 0]) // Start centered near India
   const ptrInteracting = useRef<boolean>(false)
@@ -83,7 +90,7 @@ export default function WorldMap() {
       // 1. Draw Graticule (Dotted Sphere)
       context.beginPath()
       path(graticule)
-      context.strokeStyle = 'rgba(255, 255, 255, 0.15)'
+      context.strokeStyle = themeRef.current === 'dark' ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.15)'
       context.lineWidth = 0.5
       context.setLineDash([1, 4])
       context.stroke()
@@ -93,7 +100,7 @@ export default function WorldMap() {
       if (landDataRef.current) {
         context.beginPath()
         path(landDataRef.current)
-        context.strokeStyle = 'rgba(255, 255, 255, 0.8)'
+        context.strokeStyle = themeRef.current === 'dark' ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.3)'
         context.lineWidth = 0.8
         context.stroke()
       }
@@ -220,11 +227,11 @@ export default function WorldMap() {
         <div className="absolute right-[-15px] top-1/2 w-[15px] h-[1px] bg-white/40 transform -translate-y-1/2" />
         
         {/* Label Card */}
-        <div className="bg-[#0A0A0A]/80 backdrop-blur-md border border-white/10 px-4 py-3 rounded-xl shadow-2xl flex flex-col gap-1.5 min-w-[240px]">
-          <p className="text-[9px] tracking-[0.2em] text-white/50 uppercase font-semibold">
+        <div className="bg-background/80 backdrop-blur-md border border-border px-4 py-3 rounded-xl shadow-2xl flex flex-col gap-1.5 min-w-[240px]">
+          <p className="text-[9px] tracking-[0.2em] text-muted-foreground uppercase font-semibold">
             Nuvois Base
           </p>
-          <p className="text-[13px] text-white/90 font-medium">
+          <p className="text-[13px] text-foreground/90 font-medium">
             Ahmedabad, India · Remote-first
           </p>
         </div>

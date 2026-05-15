@@ -1,8 +1,11 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+import { Plus, Minus } from "lucide-react";
 
 export default function FAQ() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
   const faqs = [
     {
       question: "What is your typical project timeline?",
@@ -22,18 +25,23 @@ export default function FAQ() {
     }
   ];
 
+  const toggleFAQ = (idx: number) => {
+    setOpenIndex(openIndex === idx ? null : idx);
+  };
+
   return (
     <section
       id="faq"
-      className="relative w-full text-[#EDEDED] flex overflow-hidden border-t border-white/5"
-      style={{ backgroundColor: "#0A0A0A" }}
+      className="relative w-full flex overflow-hidden border-t border-black/10"
+      style={{ backgroundColor: "#b9975b", color: "#111111" }}
     >
       {/* Sidebar with vertical Q&A text */}
-      <div className="hidden lg:flex flex-col items-center justify-center w-16 xl:w-24 border-r border-white/5 shrink-0 py-12 relative z-10">
+      <div className="hidden lg:flex flex-col items-center justify-center w-16 xl:w-24 border-r border-black/10 shrink-0 py-12 relative z-10">
         <span
           className="text-xs tracking-[0.4em] uppercase font-medium"
           style={{
-            color: "rgba(255, 255, 255, 0.6)",
+            color: "#111111",
+            opacity: 0.5,
             writingMode: "vertical-rl",
             transform: "rotate(180deg)",
           }}
@@ -45,32 +53,45 @@ export default function FAQ() {
       <div className="flex-1 max-w-[1400px] mx-auto px-6 lg:px-12 py-24 pb-32">
         {/* Header Section */}
         <div className="flex flex-col justify-start mb-20">
-          <p
-            className="text-[10px] tracking-[0.3em] uppercase mb-6"
-            style={{ color: "rgba(255, 255, 255, 0.4)" }}
-          >
+          <p className="text-[10px] tracking-[0.3em] uppercase mb-6" style={{ color: "#111111", opacity: 0.55 }}>
             03 / Q&A
           </p>
-          <h2 className="font-sans text-5xl sm:text-6xl font-medium tracking-tight leading-[1.1]">
+          <h2 className="font-sans text-5xl sm:text-6xl font-medium tracking-tight leading-[1.1]" style={{ color: "#111111" }}>
             Q&A
           </h2>
         </div>
 
         {/* FAQ List */}
-        <div className="flex flex-col border-t border-white/10">
+        <div className="flex flex-col border-t border-black/20">
           {faqs.map((faq, idx) => (
             <div
               key={idx}
-              className="group relative border-b border-white/10 py-8 lg:py-10 cursor-pointer transition-colors"
+              className={`group relative border-b border-black/20 py-8 lg:py-10 cursor-pointer transition-colors ${openIndex === idx ? "is-open" : ""}`}
+              onClick={() => toggleFAQ(idx)}
             >
               <div className="flex justify-between items-center px-0 lg:px-4">
-                <h3 className="text-xl sm:text-2xl font-light text-white/90 group-hover:text-white transition-colors duration-300">
+                <h3
+                  className="text-xl sm:text-2xl font-light transition-colors duration-300"
+                  style={{ color: "#111111" }}
+                >
                   {faq.question}
                 </h3>
+                <div className="ml-4 relative w-6 h-6 flex items-center justify-center" style={{ color: "#111111", opacity: 0.6 }}>
+                  <Plus
+                    size={24}
+                    strokeWidth={1.5}
+                    className={`absolute transition-all duration-300 ${openIndex === idx ? "opacity-0 rotate-90 scale-50" : "opacity-100 rotate-0 scale-100"}`}
+                  />
+                  <Minus
+                    size={24}
+                    strokeWidth={1.5}
+                    className={`absolute transition-all duration-300 ${openIndex === idx ? "opacity-100 rotate-0 scale-100" : "opacity-0 -rotate-90 scale-50"}`}
+                  />
+                </div>
               </div>
-              <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-in-out px-0 lg:px-4">
+              <div className={`grid transition-[grid-template-rows] duration-500 ease-in-out px-0 lg:px-4 ${openIndex === idx ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
                 <div className="overflow-hidden">
-                  <p className="text-base text-white/60 leading-relaxed font-light pt-6">
+                  <p className="text-base leading-relaxed font-light pt-6" style={{ color: "#111111", opacity: 0.7 }}>
                     {faq.answer}
                   </p>
                 </div>

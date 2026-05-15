@@ -26,12 +26,12 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="bg-[#0a0a0a] text-white py-16 px-6 md:py-24">
+    <footer className="bg-background text-foreground py-16 px-6 md:py-24">
       <div className="max-w-[90rem] mx-auto">
         {/* Rotating Text Section */}
         <div className="mb-20 md:mb-32 min-h-[140px] md:min-h-[160px] flex items-center">
           <h2 
-            className={`text-4xl md:text-6xl lg:text-7xl font-sans font-bold tracking-tight text-white transition-opacity duration-500 ease-in-out ${
+            className={`text-4xl md:text-6xl lg:text-7xl font-sans font-bold tracking-tight bg-gradient-to-r from-foreground to-foreground/50 bg-clip-text text-transparent transition-opacity duration-500 ease-in-out ${
               fade ? "opacity-100" : "opacity-0"
             }`}
           >
@@ -39,14 +39,14 @@ export default function Footer() {
           </h2>
         </div>
 
-        <div className="border-t border-white/10 pt-16 md:pt-24 mb-16">
+        <div className="border-t border-border pt-16 md:pt-24 mb-16">
           {/* Logo */}
           <div className="font-sans text-[12vw] leading-[0.8] font-bold tracking-tighter uppercase mb-6 md:mb-12">
-            NUVOIS<span className="text-[#FF5500]">.</span>
+            NUVOIS<span className="text-primary animate-pulse">.</span>
           </div>
 
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between w-full">
-            <div className="text-xs md:text-sm tracking-widest text-white/50 uppercase font-medium">
+            <div className="text-xs md:text-sm tracking-widest text-muted-foreground uppercase font-medium">
               NUVOIS CONSULTANCY SERVICES
             </div>
             {/* Social Links Optional */}

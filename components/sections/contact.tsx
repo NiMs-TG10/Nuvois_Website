@@ -60,15 +60,13 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative w-full text-[#EDEDED] flex overflow-hidden border-t border-white/5"
-      style={{ backgroundColor: "#0A0A0A" }}
+      className="relative w-full overflow-hidden border-t border-border/50 bg-background transition-colors duration-500"
     >
       {/* Sidebar with vertical CONTACT text */}
-      <div className="hidden lg:flex flex-col items-center justify-center w-16 xl:w-24 border-r border-white/5 shrink-0 py-12 relative z-10">
+      <div className="hidden lg:flex flex-col items-center justify-center w-16 xl:w-24 border-r border-border/50 shrink-0 py-12 relative z-10 bg-secondary/20 backdrop-blur-sm">
         <span
-          className="text-xs tracking-[0.4em] uppercase font-medium"
+          className="text-xs tracking-[0.4em] uppercase font-medium text-muted-foreground"
           style={{
-            color: "rgba(255, 255, 255, 0.6)",
             writingMode: "vertical-rl",
             transform: "rotate(180deg)",
           }}
@@ -81,15 +79,14 @@ export default function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
           <div className="lg:col-span-5 flex flex-col justify-start">
             <p
-              className="text-[10px] tracking-[0.3em] uppercase mb-6"
-              style={{ color: "rgba(255, 255, 255, 0.4)" }}
+              className="text-[10px] tracking-[0.3em] uppercase mb-6 text-primary font-bold"
             >
               04 / CONTACT
             </p>
-            <h2 className="text-4xl md:text-5xl font-medium tracking-tight leading-none text-white font-sans italic mb-4">
-              Say Hello<span className="text-[#FF5500]">.</span>
+            <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight leading-none mb-4 text-foreground">
+              Say Hello<span className="text-primary animate-pulse">.</span>
             </h2>
-            <p className="text-base text-white/50 mt-4 font-light leading-relaxed max-w-sm">
+            <p className="text-base text-muted-foreground mt-4 font-light leading-relaxed max-w-sm">
               Have a project in mind? Let's discuss how we can help you architect intelligence.
             </p>
           </div>
@@ -97,19 +94,19 @@ export default function Contact() {
           <div className="lg:col-span-7 lg:pl-12 flex flex-col justify-start">
             <form onSubmit={handleSubmit} className="space-y-8 w-full max-w-2xl">
               <div className="space-y-2 group">
-                <Label htmlFor="name" className="text-[10px] uppercase tracking-[0.2em] text-white/30 group-focus-within:text-[#FF5500] transition-colors">Name</Label>
+                <Label htmlFor="name" className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground group-focus-within:text-primary transition-colors">Name</Label>
                 <Input
                   id="name"
                   placeholder="Full Name"
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="bg-transparent border-0 border-b border-white/10 rounded-none px-0 h-12 text-base focus-visible:ring-0 focus-visible:border-[#FF5500] transition-all placeholder:text-white/10"
+                  className="bg-secondary/20 border-border rounded-lg px-4 h-14 text-base focus-visible:ring-1 focus-visible:ring-primary focus-visible:border-primary transition-all placeholder:text-muted-foreground/50 shadow-sm"
                 />
               </div>
               
               <div className="space-y-2 group">
-                <Label htmlFor="email" className="text-[10px] uppercase tracking-[0.2em] text-white/30 group-focus-within:text-[#FF5500] transition-colors">Email</Label>
+                <Label htmlFor="email" className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground group-focus-within:text-primary transition-colors">Email</Label>
                 <Input
                   id="email"
                   type="email"
@@ -117,12 +114,12 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="bg-transparent border-0 border-b border-white/10 rounded-none px-0 h-12 text-base focus-visible:ring-0 focus-visible:border-[#FF5500] transition-all placeholder:text-white/10"
+                  className="bg-secondary/20 border-border rounded-lg px-4 h-14 text-base focus-visible:ring-1 focus-visible:ring-primary focus-visible:border-primary transition-all placeholder:text-muted-foreground/50 shadow-sm"
                 />
               </div>
 
               <div className="space-y-2 group">
-                <Label htmlFor="message" className="text-[10px] uppercase tracking-[0.2em] text-white/30 group-focus-within:text-[#FF5500] transition-colors">Message</Label>
+                <Label htmlFor="message" className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground group-focus-within:text-primary transition-colors">Message</Label>
                 <textarea
                   id="message"
                   rows={4}
@@ -130,20 +127,20 @@ export default function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  className="flex w-full bg-transparent border-0 border-b border-white/10 rounded-none px-0 py-3 text-base focus-visible:outline-none focus-visible:border-[#FF5500] transition-all resize-none placeholder:text-white/10 min-h-[100px]"
+                  className="flex w-full bg-secondary/20 border border-border rounded-lg p-4 text-base focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary focus-visible:border-primary transition-all resize-none placeholder:text-muted-foreground/50 min-h-[120px] shadow-sm"
                 />
               </div>
 
               <div className="pt-6">
                 <Button 
                   type="submit" 
-                  className="w-full sm:w-auto px-12 bg-white text-black hover:bg-[#FF5500] hover:text-white transition-all duration-300 rounded-none h-14 uppercase text-xs tracking-[0.2em] font-medium group"
+                  className="w-full sm:w-auto px-12 bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-300 rounded-full h-14 uppercase text-xs tracking-[0.2em] font-semibold group shadow-[0_0_15px_rgba(79,70,229,0.3)] hover:shadow-[0_0_25px_rgba(79,70,229,0.5)]"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? (
                     "Sending..."
                   ) : (
-                    <div className="flex items-center justify-center gap-2">
+                    <div className="flex items-center justify-center gap-3">
                       Send Message
                       <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                     </div>

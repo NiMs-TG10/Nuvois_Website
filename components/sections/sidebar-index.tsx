@@ -1,9 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function SidebarIndex() {
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    const handleOpen = () => setIsOpen(true);
+    window.addEventListener('openSidebarIndex', handleOpen);
+    return () => window.removeEventListener('openSidebarIndex', handleOpen);
+  }, []);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
